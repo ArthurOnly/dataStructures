@@ -1,0 +1,92 @@
+package dataStructures;
+
+import dataStructures.Exceptions.EmptyStackException;;
+
+public class StackRedBlack {
+	
+	private int[] array;
+	int space;
+	int nextIndexRed;
+	int nextIndexBlack;
+	
+	public StackRedBlack(){
+		this.array = new int[2];
+		this.space = 2;
+		this.nextIndexRed = 0;
+		this.nextIndexBlack = 1;
+	}
+	
+	public int sizeRed() {
+		return this.nextIndexRed;
+	}
+	
+	public int sizeBlack() {
+		return this.space - this.nextIndexBlack;
+	}
+	
+	public boolean isEmptyRed() {
+		return this.nextIndexRed == 0;
+	}
+	
+	public boolean isEmptyBlack() {
+		return this.nextIndexBlack == this.space-1;
+	}
+	
+	public void pushRed(int e) {
+		if (this.nextIndexRed + 1 > this.space/2)
+			this.raiseSize();
+		this.array[this.nextIndexRed++] = e;
+	}
+	
+	public void pushBlack(int e) {
+		if (this.nextIndexBlack < this.space/2)
+			this.raiseSize();
+		this.array[this.nextIndexBlack--] = e;
+		this.printStack();
+	}
+	
+	public int popRed() throws EmptyStackException {
+		if (this.isEmptyRed()) throw new EmptyStackException("Empty stack.");
+		return this.array[--nextIndexRed];
+	}
+	
+	public int popBlack() throws EmptyStackException {
+		if (this.isEmptyBlack()) throw new EmptyStackException("Empty stack.");
+		return this.array[++nextIndexBlack];
+	}
+	
+	public int topRed() throws EmptyStackException {
+		if (this.isEmptyRed()) throw new EmptyStackException("Empty stack.");
+		return this.array[nextIndexRed-1];
+	}
+	
+	public int topBlack() throws EmptyStackException {
+		if (this.isEmptyBlack()) throw new EmptyStackException("Empty stack.");
+		return this.array[nextIndexBlack+1];
+	}
+	
+	//0 1 2 3
+	//0 1 0 0 0 0 2 3
+	
+	private void raiseSize() {
+		int[] newArray = new int[this.space*2];
+		
+		//red elementes
+		for (int i = 0; i < this.nextIndexRed; i++)
+			newArray[i] = this.array[i];
+		
+		//black elements
+		for (int i = this.nextIndexBlack+1; i < this.space; i++)
+			newArray[i+this.space] = this.array[i];
+		
+		this.space = this.space * 2;
+		this.nextIndexBlack += this.space/2;
+		this.array = newArray;
+	}
+	
+	public void printStack() {
+		for (int i = 0; i < this.space; i++)
+			System.out.print(this.array[i]+" ");
+		System.out.println();
+	}
+}
