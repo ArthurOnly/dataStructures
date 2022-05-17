@@ -1,4 +1,4 @@
-package test;
+package dataStructures.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

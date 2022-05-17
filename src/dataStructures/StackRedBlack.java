@@ -65,13 +65,11 @@ public class StackRedBlack {
 		return this.array[nextIndexBlack+1];
 	}
 	
-	//0 1 2 3
-	//0 1 0 0 0 0 2 3
 	
 	private void raiseSize() {
 		int[] newArray = new int[this.space*2];
 		
-		//red elementes
+		//red elements
 		for (int i = 0; i < this.nextIndexRed; i++)
 			newArray[i] = this.array[i];
 		
