@@ -1,10 +1,16 @@
 package dataStructures;
 
 import dataStructures.Exceptions.EmptyQueueException;
+import dataStructures.linked_list.SingleLinkedList;
 
 public class Main {
 
 	public static void main(String[] args) {
+		SingleLinkedList lk = new SingleLinkedList();
+		lk.add(1);
+		lk.add(2);
+		lk.add(3);
+		lk.pop();
 		//Stack stack = new Stack();
 		//stack.push(1);
 		//stack.push(2);
@@ -19,14 +25,14 @@ public class Main {
 		//	stack.pushBlack(17-i);
 		//}
 		//System.out.println(stack.topBlack());
-		Queue f = new Queue(5); //criando fila tamnho 1 e duplicação
-		f.enqueue(1);
-		f.enqueue(2);
-		System.out.println(f.first());
-		f.dequeue();
-		System.out.println(f.first());
-		f.enqueue(1);
-		System.out.println(f.first());
+		//Queue f = new Queue(5); //criando fila tamnho 1 e duplicação
+		//f.enqueue(1);
+		//f.enqueue(2);
+		//System.out.println(f.first());
+		//f.dequeue();
+		//System.out.println(f.first());
+		//f.enqueue(1);
+		//System.out.println(f.first());
 		/*f.enqueue(1);
 		f.enqueue(2);
 		f.enqueue(3);

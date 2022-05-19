@@ -5,21 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import dataStructures.Stack;
+import dataStructures.StackLinkedList;
 
 class StackTest {
 
     @Test
     void push_top() {
-    	Stack stack = new Stack();
+    	StackLinkedList stack = new StackLinkedList();
     	stack.push(8);
         assertEquals(8, stack.top());
     }
     
     @Test
     void pop() {
-    	Stack stack = new Stack();
+    	StackLinkedList stack = new StackLinkedList();
     	stack.push(8);
-    	int n = stack.pop();
+    	Object n = stack.pop();
         assertEquals(8, n);
         assertEquals(0, stack.size());
     }
