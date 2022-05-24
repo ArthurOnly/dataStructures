@@ -29,6 +29,14 @@ public class SingleLinkedList {
 		this.quantityOfItens++;
 	}
 	
+	public void removeFirst() {
+		if (this.quantityOfItens < 1)
+			throw new RuntimeException("Index inválido");
+		
+		this.head = this.head.next;
+		this.quantityOfItens--;
+	}
+	
 	public Object get(int index) throws RuntimeException {
 		if (index < 0 || index >= quantityOfItens)
 			throw new RuntimeException("Index inválido");
