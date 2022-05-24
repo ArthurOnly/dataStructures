@@ -4,12 +4,12 @@ import dataStructures.Exceptions.EmptyStackException;;
 
 public class Stack {
 	
-	private int[] array;
+	private Object[] array;
 	int space;
 	int nextIndex;
 	
 	public Stack(){
-		this.array = new int[2];
+		this.array = new Object[2];
 		this.space = 2;
 		this.nextIndex = 0;
 	}
@@ -22,25 +22,25 @@ public class Stack {
 		return this.nextIndex == 0;
 	}
 	
-	public void push(int e) {
+	public void push(Object e) {
 		if (this.nextIndex + 1 == this.space)
 			this.raiseSize();
 		this.array[this.nextIndex++] = e;
 	}
 	
-	public int pop() throws EmptyStackException {
+	public Object pop() throws EmptyStackException {
 		if (this.isEmpty()) throw new EmptyStackException("Empty stack.");
 		return this.array[--nextIndex];
 	}
 	
-	public int top() throws EmptyStackException {
+	public Object top() throws EmptyStackException {
 		if (this.isEmpty()) throw new EmptyStackException("Empty stack.");
 		return this.array[nextIndex-1];
 	}
 	
 	private void raiseSize() {
 		this.space = this.space * 2;
-		int[] newArray = new int[this.space];
+		Object[] newArray = new Object[this.space];
 		for (int i = 0; i < nextIndex; i++)
 			newArray[i] = this.array[i];
 		this.array = newArray;

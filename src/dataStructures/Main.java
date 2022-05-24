@@ -5,7 +5,7 @@ import dataStructures.linked_list.SingleLinkedList;
 public class Main {
 
 	public static void main(String[] args) {
-		QueueLinkedList ql = new QueueLinkedList();
+		QueueOfStacks ql = new QueueOfStacks();
 		ql.enqueue(1);
 		ql.enqueue(2);
 		ql.enqueue(3);
@@ -13,6 +13,8 @@ public class Main {
 		ql.dequeue();
 		System.out.println(ql.first());
 		ql.enqueue(9);
+		System.out.println(ql.first());
+		ql.dequeue();
 		System.out.println(ql.first());
 		ql.dequeue();
 		System.out.println(ql.first());
@@ -29,12 +31,34 @@ public class Main {
 		//System.out.println(stack.top());
 		//stack.pop();
 		//System.out.println(stack.top());
-		//StackRedBlack stack = new StackRedBlack();
-		//stack.pushBlack(5);
+		/*StackRedBlack stack = new StackRedBlack();
+		System.out.println(stack.sizeBlack());
+		stack.pushRed(5);
+		stack.pushRed(6);
+		stack.pushRed(7);
+		stack.pushRed(8);
+		stack.pushRed(9);
+		stack.pushRed(10);
+		stack.pushBlack(3);
+		System.out.println(stack.sizeBlack());
+		System.out.println(stack.sizeRed());
+		stack.printBlack();
+		System.out.println();
+		stack.printRed();*/
+		
+		//System.out.print(stack.isEmptyBlack());
+		//System.out.print(stack.isEmptyRed());
+		//stack.pushRed(5);
+		//stack.pushRed(6);
+		//stack.popRed();
+		//stack.popRed();
+		//System.out.print(stack.isEmptyRed());
+		
 		//for (int i = 1; i < 17; i++) {
 		//	stack.pushRed(i);
 		//	stack.pushBlack(17-i);
 		//}
+		
 		//System.out.println(stack.topBlack());
 		//Queue f = new Queue();
 		//f.enqueue(1);

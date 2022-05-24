@@ -21,7 +21,7 @@ public class StackRedBlack {
 	}
 	
 	public int sizeBlack() {
-		return this.space - this.nextIndexBlack;
+		return this.space - 1 - this.nextIndexBlack;
 	}
 	
 	public boolean isEmptyRed() {
@@ -32,17 +32,20 @@ public class StackRedBlack {
 		return this.nextIndexBlack == this.space-1;
 	}
 	
+	private boolean isFull() {
+		return this.nextIndexRed + this.space - this.nextIndexBlack == this.space+1;
+	}
+	
 	public void pushRed(int e) {
-		if (this.nextIndexRed + 1 > this.space/2)
+		if (this.isFull())
 			this.raiseSize();
 		this.array[this.nextIndexRed++] = e;
 	}
 	
 	public void pushBlack(int e) {
-		if (this.nextIndexBlack < this.space/2)
+		if (this.isFull())
 			this.raiseSize();
 		this.array[this.nextIndexBlack--] = e;
-		this.printStack();
 	}
 	
 	public int popRed() throws EmptyStackException {
@@ -82,9 +85,13 @@ public class StackRedBlack {
 		this.array = newArray;
 	}
 	
-	public void printStack() {
-		for (int i = 0; i < this.space; i++)
+	public void printRed() {
+		for (int i = 0; i < this.nextIndexRed; i++)
 			System.out.print(this.array[i]+" ");
-		System.out.println();
+	}
+	
+	public void printBlack() {
+		for (int i = this.nextIndexBlack+1; i < this.space; i++)
+			System.out.print(this.array[i]+" ");
 	}
 }
