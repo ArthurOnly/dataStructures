@@ -5,7 +5,15 @@ import dataStructures.linked_list.SingleLinkedList;
 public class Main {
 
 	public static void main(String[] args) {
-		QueueOfStacks ql = new QueueOfStacks();
+            StackOfQueues st = new StackOfQueues();
+            st.push(1);
+            st.push(2);
+            System.out.println(st.top());
+            st.pop();
+            System.out.println(st.top());
+            st.pop();
+            st.pop();
+		/*QueueOfStacks ql = new QueueOfStacks();
 		ql.enqueue(1);
 		ql.enqueue(2);
 		ql.enqueue(3);
@@ -17,7 +25,7 @@ public class Main {
 		ql.dequeue();
 		System.out.println(ql.first());
 		ql.dequeue();
-		System.out.println(ql.first());
+		System.out.println(ql.first());*/
 		//SingleLinkedList lk = new SingleLinkedList();
 		//lk.add(1);
 		//lk.add(2);
