@@ -7,8 +7,8 @@ public class StackOfQueues {
         private Queue q2;
 	
 	public StackOfQueues(){
-            this.q1 = new Queue(10);
-            this.q2 = new Queue(10);
+            this.q1 = new Queue();
+            this.q2 = new Queue();
 	}
 	
 	public int size() {
