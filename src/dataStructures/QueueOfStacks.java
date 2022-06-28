@@ -14,13 +14,13 @@ public class QueueOfStacks implements IQueue {
 	
 	@Override
 	public void enqueue(Object o) {
-		while (!this.st.isEmpty())
-            this.st2.push(this.st.pop()); 
+            while (!this.st.isEmpty())
+                this.st2.push(this.st.pop()); 
          
-        st.push(o); 
-  
-        while (!this.st2.isEmpty())     
-            this.st.push(this.st2.pop());  
+            st.push(o); 
+
+            while (!this.st2.isEmpty())     
+                this.st.push(this.st2.pop());  
 	}
 
 	@Override

@@ -137,6 +137,89 @@ public class Main {
             System.out.println(f.first());
         }
         
+        public static void testSequence(){
+            Sequence l = new Sequence();
+            l.insertFirst(1);
+            l.insertFirst(2);
+            l.insertFirst(3);
+            l.insertFirst(4);
+            l.insertFirst(5);
+            l.insertFirst(6);
+            l.insertFirst(7);
+            l.insertFirst(8);
+            l.insertFirst(9);
+            l.insertFirst(10);
+            l.print();
+            System.out.println("Size: " + l.size());
+            System.out.println("Is empty: " + l.isEmpty());
+            //System.out.println("Is first: " + l.isFirst(1));
+            //System.out.println("Is last: " + l.isLast(10));
+            System.out.println("First: " + l.first());
+            System.out.println("Last: " + l.last());
+            System.out.println("Before: " + l.before(1));
+            System.out.println("After: " + l.after(10));
+            l.replaceElement(1, 11);
+            l.print();
+            l.swapElements(11, 10);
+            l.print();
+            l.insertBefore(5, 12);
+            l.print();
+            l.insertAfter(5, 13);
+            l.print();
+            l.remove(10);
+            l.print();
+        }
+        
+        public static void testList(){
+            List l = new List();
+            l.insertFirst(1);
+            l.insertFirst(2);
+            l.insertFirst(3);
+            l.insertFirst(4);
+            l.insertFirst(5);
+            l.insertFirst(6);
+            l.insertFirst(7);
+            l.insertFirst(8);
+            l.insertFirst(9);
+            l.insertFirst(10);
+            l.print();
+            System.out.println("Size: " + l.size());
+            System.out.println("Is empty: " + l.isEmpty());
+            System.out.println("Is first: " + l.isFirst(1));
+            System.out.println("Is last: " + l.isLast(10));
+            System.out.println("First: " + l.first());
+            System.out.println("Last: " + l.last());
+            System.out.println("Before: " + l.before(1));
+            System.out.println("After: " + l.after(10));
+            l.replaceElement(1, 11);
+            l.print();
+        }
+        
+        public static void testListLinkedList(){
+            ListLinkedList l = new ListLinkedList();
+            l.insertFirst(1);
+            l.insertFirst(2);
+            l.insertFirst(3);
+            l.insertFirst(4);
+            l.insertFirst(5);
+            l.insertFirst(6);
+            l.insertFirst(7);
+            l.insertFirst(8);
+            l.insertFirst(9);
+            l.insertFirst(10);
+            l.print();
+            System.out.println("Size: " + l.size());
+            System.out.println("Is empty: " + l.isEmpty());
+            System.out.println("Is first: " + l.isFirst(1));
+            System.out.println("Is last: " + l.isLast(10));
+            System.out.println("First: " + l.first());
+            System.out.println("Last: " + l.last());
+            System.out.println("Before: " + l.before(1));
+            System.out.println("After: " + l.after(10));
+            l.replaceElement(1, 11);
+            l.print();
+        }
+        
 	public static void main(String[] args) {
             // testVectorLinkedList();
             // System.out.println();
@@ -144,9 +227,12 @@ public class Main {
             // testQueueVector();
             // testStack();
             // testStackOfQueues();
-            testQueueOfStacks();
+            // testQueueOfStacks();
             // testStackRedBlack();
             // testQueue();
+            // testSequence();
+            // testList();
+            // testListLinkedList();
 	}
 	
 }
