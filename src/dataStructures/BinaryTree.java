@@ -132,10 +132,10 @@ public class BinaryTree {
         if (this.isExternal(node))
             return node;
 
-        if (this.comparator.compare(key, node))
+        if (this.comparator.compare(key, node) == 1)
             return search(key, node.getLeftChild());
 
-        else if (key == node.getElement())
+        else if (this.comparator.compare(key, node) == 0)
             return node;
 
         else
