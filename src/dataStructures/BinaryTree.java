@@ -5,6 +5,11 @@ import java.util.Iterator;
 
 public class BinaryTree {
     
+    private int IS_SMALLER = 1;
+    private int IS_GREATER = -1;
+    private int IS_EQUAL = 0;
+
+
     private TreeNode root;
     private int tamanho;
     private TreeComparatorNumber comparator;
@@ -127,37 +132,52 @@ public class BinaryTree {
         node.setElement(o);
     }
 
-    public TreeNode search(Object key, TreeNode node)
+    public TreeNode search(Object key)
     {
-        if (this.isExternal(node))
-            return node;
-
-        if (this.comparator.compare(key, node) == 1)
-            return search(key, node.getLeftChild());
-
-        else if (this.comparator.compare(key, node) == 0)
-            return node;
-
-        else
-            return search(key, node.getRightChild());
-        
+        return searchRec(key, this.root);
     }
 
-    public void insert(Object key, Object o)
+    private TreeNode searchRec(Object key, TreeNode root)
     {
-        TreeNode node = this.search(key, this.root());
-        if (this.comparator.compare(key, node) == 0)
-            this.replace(node, o);
+        System.out.println(root.getLeftChild() == null && root.getRightChild() == null);
+        if (this.isExternal(root))
+            return root;
+
+        if (this.comparator.compare(key, root.getElement()) == this.IS_SMALLER)
+            return searchRec(key, root.getLeftChild());
+
+        else if (this.comparator.compare(key, root.getElement()) == this.IS_EQUAL)
+            return root;
+
         else
-        {
-            TreeNode newNode = new TreeNode(o);
-            if (this.comparator.compare(key, node) == 1)
-                node.setLeftChild(newNode);
-            else
-                node.setRightChild(newNode);
-            this.tamanho++;
-        }
+            return searchRec(key, root.getRightChild());
     }
+
+    public void insert(Object key)
+    {
+        TreeNode node = this.search(key);
+        TreeNode newNode = new TreeNode(key, node);
+
+        if (this.comparator.compare(key, root.getElement()) == this.IS_SMALLER)
+            node.setLeftChild(newNode);
+        else if (this.comparator.compare(key, root.getElement()) == this.IS_GREATER)
+            node.setRightChild(newNode);
+    }
+
+    // public void insertRec(Object key, TreeNode node)
+    // {       
+    //     TreeNode node = this.search(key)
+    //     if (node == null) {
+    //         node = new TreeNode(key);
+    //         this.tamanho++;
+    //         return;
+    //     }
+ 
+    //     if (this.comparator.compare(key, root.getElement()) == this.IS_SMALLER)
+    //         insertRec(key, node.getLeftChild());
+    //     else if (this.comparator.compare(key, root.getElement()) == this.IS_GREATER)
+    //         insertRec(key, node.getRightChild());
+    // }
 
     public void print()
     {
