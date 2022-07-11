@@ -1,5 +1,8 @@
 package dataStructures;
 
+import java.util.Iterator;
+
+import dataStructures.SimpleTree.No;
 import dataStructures.linked_list.SingleLinkedList;
 
 
@@ -219,6 +222,29 @@ public class Main {
             l.replaceElement(1, 11);
             l.print();
         }
+
+        public static void testSimpleTree()
+        {
+            SimpleTree tree = new SimpleTree(5);
+            tree.addChild(tree.raiz, 13);
+            tree.addChild(tree.raiz, 7);
+            tree.addChild(tree.raiz, 1);
+
+            tree.printLinear(); 
+            
+            System.out.println("Qantidade itens: "+ tree.size());
+            System.out.println("Altura: "+ tree.height());
+
+            No rootNodeChild = (No) tree.root().children().next();
+
+            System.out.println("Filho da raiz: "+ rootNodeChild.element());
+
+            tree.addChild(rootNodeChild, 3);
+
+            tree.printLinear();
+            System.out.println("Altura: "+ tree.height());
+            
+        }
         
 	public static void main(String[] args) {
             // testVectorLinkedList();
@@ -233,6 +259,7 @@ public class Main {
             // testSequence();
             // testList();
             // testListLinkedList();
+            testSimpleTree();
 	}
 	
 }
