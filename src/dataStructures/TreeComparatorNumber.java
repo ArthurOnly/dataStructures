@@ -4,12 +4,12 @@ import java.util.Comparator;
 
 public class TreeComparatorNumber implements Comparator {
     @Override
-    public int compare(Object arg0, Object arg1) {
-        if ((int) arg0 > (int) arg1)
+    public int compare(Object arg0, TreeNode arg1) {
+        if ((int) arg0 > (int) arg1.getElement())
             return 1;
-        else if (arg0 == arg1)
-            return -1;
-        else
+        else if ((int) arg0 == (int) arg1.getElement())
             return 0;
+        else
+            return -1;
     }
 }

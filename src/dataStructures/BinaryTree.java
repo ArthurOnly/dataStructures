@@ -143,4 +143,25 @@ public class BinaryTree {
         
     }
 
+    public void insert(Object key, Object o)
+    {
+        TreeNode node = this.search(key, this.root());
+        if (this.comparator.compare(key, node) == 0)
+            this.replace(node, o);
+        else
+        {
+            TreeNode newNode = new TreeNode(o);
+            if (this.comparator.compare(key, node) == 1)
+                node.setLeftChild(newNode);
+            else
+                node.setRightChild(newNode);
+            this.tamanho++;
+        }
+    }
+
+    public void print()
+    {
+        TreePrinter.print(this.root);
+    }
+
 }

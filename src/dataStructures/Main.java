@@ -1,14 +1,6 @@
 package dataStructures;
 
 import java.util.Iterator;
-<<<<<<< HEAD
-
-import dataStructures.SimpleTree.No;
-import dataStructures.linked_list.SingleLinkedList;
-=======
->>>>>>> 8aa05dee5c7fdd93174a358b956d039029dee6ab
-
-import dataStructures.linked_list.SingleLinkedList;
 
 public class Main {
 
@@ -234,6 +226,11 @@ public class Main {
             System.out.print(treeElements.next() + " ");
         System.out.println();
         System.out.println(tree.search(1, tree.root()));
+
+        tree.insert(2, 2);
+        tree.insert(3, 3);
+
+        tree.print();
     }
 
     public static void main(String[] args) {
