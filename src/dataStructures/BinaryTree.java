@@ -196,9 +196,8 @@ public class BinaryTree {
             aux.setRightChild(null);
             aux.setLeftChild(null);
         }
-
     }
-
+    
     public void print()
     {
         TreePrinter.print(this.root);
