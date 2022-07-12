@@ -195,7 +195,8 @@ public class BinaryTree {
     
     public void print()
     {
-        TreePrinter.print(this.root);
+        //TreePrinter.print(this.root);
+        TreePrinterB.print(this);
     }
 
 }
