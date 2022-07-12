@@ -40,7 +40,7 @@ public class TreeNode {
 
     public void setRightChild(TreeNode node)
     {
-        this.leftChild = node;
+        this.rightChild = node;
     }
 
     public TreeNode getRightChild()

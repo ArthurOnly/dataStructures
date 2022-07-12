@@ -98,7 +98,6 @@ public class TreePrinter
 
             // print line of numbers
             for (int j = 0; j < line.size(); j++) {
-
                 String f = String.valueOf(line.get(j));
                 if (f == null) f = "";
                 int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
