@@ -222,7 +222,7 @@ public class Main {
     public static void testBinaryTree() {
         BinaryTree tree = new BinaryTree(6);
         
-        tree.print();
+        //tree.print();
 
         //slide
         // tree.insert(9);
@@ -244,9 +244,9 @@ public class Main {
     
         tree.print();
 
-        tree.remove(1);
+        //tree.remove(1);
 
-        tree.print();
+        //tree.print();
     }
 
     public static void main(String[] args) {

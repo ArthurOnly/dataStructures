@@ -16,8 +16,8 @@ public class BinaryTree {
     public BinaryTree(Object o)
     {
         this.root = new TreeNode(o);
-        this.root.setLeftChild(new TreeNode(null));
-        this.root.setRightChild(new TreeNode(null));
+        this.root.setLeftChild(new TreeNode(null, this.root));
+        this.root.setRightChild(new TreeNode(null, this.root));
         this.tamanho++;
         this.comparator = new TreeComparatorNumber();
     }
@@ -29,17 +29,17 @@ public class BinaryTree {
 
     public int height()
     {
-        int profundidade = 0;
+        int depth = 0;
  
-        Iterator el = Nos();
+        Iterator el = nos();
  
         while (el.hasNext()) {
-            No v = (No) el.next();
-            if (profundidade(v) > profundidade)
-                profundidade = profundidade(v);
+            TreeNode v = (TreeNode) el.next();
+            if (depth(v) > depth)
+                depth = depth(v);
         }
  
-        return profundidade;
+        return depth;
     }
 
     public boolean isEmpty()
@@ -50,31 +50,31 @@ public class BinaryTree {
     public Iterator elements()
     {
         ArrayList array = new ArrayList<>();
-        this.iterTreeElements(array, this.root);
+        this.elementsRec(array, this.root);
         return array.iterator();
     }
 
-    private void iterTreeElements(ArrayList array, TreeNode node)
+    private void elementsRec(ArrayList array, TreeNode node)
     {
-        if (node == null) return;
+        if (node.getElement() == null) return;
         array.add(node.getElement());
-        iterTreeElements(array, node.getLeftChild());
-        iterTreeElements(array, node.getRightChild());
+        elementsRec(array, node.getLeftChild());
+        elementsRec(array, node.getRightChild());
     }
 
     public Iterator nos()
     {
         ArrayList array = new ArrayList<>();
-        this.iterTreeNos(array, this.root);
+        this.nosRec(array, this.root);
         return array.iterator();
     }
 
-    private void iterTreeNos(ArrayList array, TreeNode node)
+    private void nosRec(ArrayList array, TreeNode node)
     {
-        if (node == null) return;
+        if (node.getElement() == null) return;
         array.add(node);
-        iterTreeNos(array, node.getLeftChild());
-        iterTreeNos(array, node.getRightChild());
+        nosRec(array, node.getLeftChild());
+        nosRec(array, node.getRightChild());
     }
 
     public TreeNode root()
@@ -126,11 +126,6 @@ public class BinaryTree {
     {
         if (this.isRoot(node)) return 0;
         return 1 + depth(node.getRootNode());
-    }
-
-    public void replace(TreeNode node, Object o)
-    {
-        node.setElement(o);
     }
 
     public TreeNode search(Object o)
