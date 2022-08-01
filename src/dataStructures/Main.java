@@ -249,6 +249,17 @@ public class Main {
         //tree.print();
     }
 
+    public static void TestHashTable()
+    {
+        HashTable table = new HashTable(10);
+        table.insert(1, "Teste");
+        table.insert(48, "Teste");
+        table.insert("Coisa", "Teste");
+        table.print();
+        System.out.println("Buscando teste...: "+table.search("Coisa"));
+        System.out.println("Buscando 88...: "+table.search(88));
+    }
+
     public static void main(String[] args) {
         // testVectorLinkedList();
         // System.out.println();
@@ -262,7 +273,8 @@ public class Main {
         // testSequence();
         // testList();
         // testListLinkedList();
-        testBinaryTree();
+        // testBinaryTree();
+        TestHashTable();
     }
 
 }
