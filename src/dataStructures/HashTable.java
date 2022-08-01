@@ -16,15 +16,20 @@ public class HashTable {
     }
 
     public void insert(Object key, Object value) {
+        Object exists = this.search(key);
+        if (exists != null) 
+            throw new RuntimeException("Key already exists.");
+
+        if (this.size == this.capacity)
+            this.raiseSize();
+
         int index = this.hash(key);
 
         // Linear probing
-        if (this.array[index] != null) {
-            while (this.array[index] != null) {
-                index++;
-                if (index == this.capacity) {
-                    index = 0;
-                }
+        while (this.array[index] != null) {
+            index++;
+            if (index == this.capacity) {
+                index = 0;
             }
         }
 
@@ -32,18 +37,25 @@ public class HashTable {
         this.size++;
     }
 
+    public int size()
+    {
+        return this.size;
+    }
+
     public Object search(Object key) {
         int index = this.hash(key);
+        int passCount = 0;
         
         // Linear probing
         while (this.array[index] != null) {
-            if (this.array[index].getKey().equals(key)) {
+            if (this.array[index].getKey().equals(key)) 
                 return this.array[index].getValue();
-            }
-            index++;
-            if (index == this.capacity) {
-                index = 0;
-            }
+            
+            if (passCount == this.capacity) break;
+            if (index == this.capacity-1) index = 0;
+            else index++;
+
+            passCount++;
         }
 
         return null;
@@ -56,6 +68,29 @@ public class HashTable {
             System.out.print(this.array[i]+" ");
         }
         System.out.println();
+    }
+
+    private void raiseSize()
+    {
+        this.capacity = this.capacity*2;
+        TableItem[] newArray = new TableItem[this.capacity];
+
+        for (int i = 0; i < this.capacity/2; i++){
+            TableItem ti = this.array[i];
+            if (ti == null) continue;
+            int index = this.hash(ti.key);
+            
+            while (newArray[index] != null) {
+                index++;
+                if (index == this.capacity) {
+                    index = 0;
+                }
+            }
+
+            newArray[i] = ti;
+        }
+
+        this.array = newArray;
     }
     
     private class TableItem {

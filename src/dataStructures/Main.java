@@ -251,12 +251,14 @@ public class Main {
 
     public static void TestHashTable()
     {
-        HashTable table = new HashTable(10);
+        HashTable table = new HashTable(2);
         table.insert(1, "Teste");
         table.insert(48, "Teste");
+        table.insert(37, "Teste");
+        table.insert(22, "Teste");
         table.insert("Coisa", "Teste");
         table.print();
-        System.out.println("Buscando teste...: "+table.search("Coisa"));
+        System.out.println("Buscando coisa...: "+table.search("Coisa"));
         System.out.println("Buscando 88...: "+table.search(88));
     }
 
