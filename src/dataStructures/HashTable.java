@@ -20,7 +20,7 @@ public class HashTable {
         if (exists != null) 
             throw new RuntimeException("Key already exists.");
 
-        if (this.size == this.capacity)
+        if (loadFactor() == 1)
             this.raiseSize();
 
         int index = this.hash(key);
@@ -35,6 +35,34 @@ public class HashTable {
 
         this.array[index] = new TableItem(key, value);
         this.size++;
+    }
+
+    private int loadFactor()
+    {
+        return this.size / this.capacity;
+    }
+
+    public void remove(Object key)
+    {
+        int index = this.hash(key);
+        int passCount = 0;
+        
+        // Linear probing
+        while (this.array[index] != null) {
+            if (this.array[index].getKey().equals(key)){ 
+                this.array[index] = null;
+                this.size--;
+                return;
+            }
+            
+            if (passCount == this.capacity) break;
+            if (index == this.capacity-1) index = 0;
+            else index++;
+
+            passCount++;
+        }
+
+        throw new RuntimeException("Key doesnt exists.");
     }
 
     public int size()

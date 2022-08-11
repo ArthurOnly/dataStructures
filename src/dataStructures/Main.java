@@ -259,7 +259,8 @@ public class Main {
         table.insert("Coisa", "Teste");
         table.print();
         System.out.println("Buscando coisa...: "+table.search("Coisa"));
-        System.out.println("Buscando 88...: "+table.search(88));
+        table.remove("Coisa");
+        System.out.println("Buscando coisa...: "+table.search("Coisa"));
     }
 
     public static void main(String[] args) {
