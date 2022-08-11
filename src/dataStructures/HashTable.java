@@ -61,8 +61,6 @@ public class HashTable {
 
             passCount++;
         }
-
-        throw new RuntimeException("Key doesnt exists.");
     }
 
     public int size()

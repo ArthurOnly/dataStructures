@@ -256,10 +256,10 @@ public class Main {
         table.insert(48, "Teste");
         table.insert(37, "Teste");
         table.insert(22, "Teste");
-        table.insert("Coisa", "Teste");
+        table.insert("papai", "Teste");
         table.print();
         System.out.println("Buscando coisa...: "+table.search("Coisa"));
-        table.remove("Coisa");
+        table.remove("papai");
         System.out.println("Buscando coisa...: "+table.search("Coisa"));
     }
 
