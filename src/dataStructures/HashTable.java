@@ -39,7 +39,7 @@ public class HashTable {
 
     private int loadFactor()
     {
-        return this.size / this.capacity;
+        return this.size / (this.capacity / 2);
     }
 
     public void remove(Object key)
