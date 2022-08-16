@@ -263,6 +263,25 @@ public class Main {
         System.out.println("Buscando coisa...: "+table.search("Coisa"));
     }
 
+    public static void testHeap()
+    {
+        Heap heap = new Heap();
+        heap.insert(5);
+        heap.insert(7);
+        heap.insert(9);
+        heap.insert(11);
+        heap.insert(2);
+        heap.insert(3);
+        heap.insert(25);
+        heap.insert(1);
+        heap.insert(30);
+        heap.removeMin();
+        heap.removeMin();
+        heap.removeMin();
+        heap.insert(12);
+        heap.print();
+    }
+
     public static void main(String[] args) {
         // testVectorLinkedList();
         // System.out.println();
@@ -277,7 +296,8 @@ public class Main {
         // testList();
         // testListLinkedList();
         // testBinaryTree();
-        TestHashTable();
+        // TestHashTable();
+        testHeap();
     }
 
 }
