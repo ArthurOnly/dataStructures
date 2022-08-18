@@ -1,22 +1,35 @@
 package dataStructures;
+
+import java.util.Comparator;
+
 //max heap
-public class Heap {
+public class Heap implements IHeap {
     private Object[] array;
     private int actualSize;
     private int capacity;
-    private TreeComparatorNumber comparator;
+    private Comparator comparator;
 
-    public Heap()
+    public Heap(Comparator comparator)
     {
         this.array = new Object[2];
         this.actualSize = 0;
         this.capacity = 2;
-        this.comparator = new TreeComparatorNumber();
+        this.comparator = comparator;
     }
 
     public boolean isFull()
     {
         return this.actualSize == this.capacity-1;
+    }
+
+    public boolean isEmpty()
+    {
+        return this.actualSize == 0;
+    }
+
+    public int size()
+    {
+        return this.actualSize;
     }
 
     private void raiseSize()
@@ -55,31 +68,48 @@ public class Heap {
         }
     }
 
-    public void removeMin()
+    public Object removeMin()
     {
-        this.array[0] = this.array[this.actualSize--];
-        this.array[actualSize+1] = null;
-
-        int i = 0;
-        while(!isLeaf(i)){
-            int iLeft = getLeft(i);
-            int iRight = getRight(i);
-            Object swap = this.comparator.greater(this.array[iLeft], this.array[iRight]);
-            int iSwap = swap == this.array[iLeft] ? iLeft : iRight;
-
-            this.array[iSwap] = this.array[i];
-            this.array[i] = swap;
-
-            i = iSwap;
-            System.out.println(i);
+        Object result = this.array[1];
+        this.array[1] = this.array[this.actualSize];
+        this.array[this.actualSize] = null;
+        this.actualSize--;
+        
+        // Adjust heap order
+        int actualIndex = 1;
+        while (actualIndex <= this.actualSize){
+            int minChildIndex = this.getMinChild(actualIndex);
+            if (this.array[minChildIndex] == null){
+                break;
+            }
+            if (this.comparator.compare(this.array[actualIndex], this.array[minChildIndex]) == -1){
+                Object pivot = this.array[actualIndex];
+                this.array[actualIndex] = this.array[minChildIndex];
+                this.array[minChildIndex] = pivot;
+                actualIndex = minChildIndex;
+            }
+            else
+                break;
         }
+        return result;
     }
 
-    private boolean isLeaf(int i)
+    public Object min()
+    {
+        return this.array[1];
+    }
+
+    private int getMinChild(int i)
     {
         Object leftChild = this.array[getLeft(i)];
         Object rightChild = this.array[getRight(i)];
-        return leftChild == null && rightChild == null;
+        if (leftChild == null)
+            return getRight(i);
+        if (rightChild == null)
+            return getLeft(i);
+        if (this.comparator.compare(leftChild, rightChild) == 1)
+            return getLeft(i);
+        return getRight(i);
     }
 
     private int getRoot(int i)

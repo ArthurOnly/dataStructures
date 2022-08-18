@@ -265,7 +265,7 @@ public class Main {
 
     public static void testHeap()
     {
-        Heap heap = new Heap();
+        Heap heap = new Heap(new TreeComparatorNumber());
         // heap.insert(5);
         // heap.insert(7);
         // heap.insert(9);
@@ -285,8 +285,31 @@ public class Main {
         heap.print();
         heap.removeMin();
         heap.print();
+        heap.removeMin();
+        heap.print();
+        heap.removeMin();
+        heap.print();
+        heap.removeMin();
+        heap.print();
         //heap.removeMin();
         //heap.print();
+    }
+
+    public static void testPriorityQueue()
+    {
+        Heap heap = new Heap(new TreeComparatorKeyValue());
+        PriorityQueue pq = new PriorityQueue(heap);
+
+        pq.insert(1, "Teste");
+        pq.insert(48, "Teste");
+        pq.insert(37, "Teste");
+        pq.insert(22, "Teste");
+        pq.insert("zs", "Teste");
+
+        pq.print();
+        KeyValue first = pq.removeMin();
+        System.out.println("First: " + first.key);
+        pq.print();
     }
 
     public static void main(String[] args) {
@@ -304,7 +327,8 @@ public class Main {
         // testListLinkedList();
         // testBinaryTree();
         // TestHashTable();
-        testHeap();
+        // testHeap();
+        testPriorityQueue();
     }
 
 }
