@@ -16,7 +16,7 @@ public class Heap {
 
     public boolean isFull()
     {
-        return this.actualSize == this.capacity;
+        return this.actualSize == this.capacity-1;
     }
 
     private void raiseSize()
@@ -34,31 +34,70 @@ public class Heap {
         if (this.isFull())
             this.raiseSize();
 
-        this.array[this.actualSize++] = key;
+        this.array[++this.actualSize] = key;
+        if (this.actualSize == 1)
+            return;
 
         // Adjust heap order
-        int rootIndex = this.getRoot(this.actualSize-1);
-        int actualIndex = this.actualSize - 1;
+        int rootIndex = this.getRoot(this.actualSize);
+        int actualIndex = this.actualSize;
 
         while (this.comparator.compare(this.array[actualIndex], this.array[rootIndex]) == 1){
-            if (actualIndex == 0) return;
-
             Object pivot = this.array[rootIndex];
-            this.array[rootIndex] = key;
+            this.array[rootIndex] = this.array[actualIndex];
             this.array[actualIndex] = pivot;
+
             actualIndex = rootIndex;
             rootIndex = this.getRoot(actualIndex);
+
+            if (actualIndex == 1)
+                break;
         }
     }
 
     public void removeMin()
     {
-        this.array[this.actualSize--] = null;
+        this.array[0] = this.array[this.actualSize--];
+        this.array[actualSize+1] = null;
+
+        int i = 0;
+        while(!isLeaf(i)){
+            int iLeft = getLeft(i);
+            int iRight = getRight(i);
+            Object swap = this.comparator.greater(this.array[iLeft], this.array[iRight]);
+            int iSwap = swap == this.array[iLeft] ? iLeft : iRight;
+
+            this.array[iSwap] = this.array[i];
+            this.array[i] = swap;
+
+            i = iSwap;
+            System.out.println(i);
+        }
+    }
+
+    private boolean isLeaf(int i)
+    {
+        Object leftChild = this.array[getLeft(i)];
+        Object rightChild = this.array[getRight(i)];
+        return leftChild == null && rightChild == null;
     }
 
     private int getRoot(int i)
     {
-        return (i-1) / 2;
+        //System.out.print(i);
+        //System.out.print("/2=");
+        //System.out.println(i/2);
+        return i / 2;
+    }
+
+    private int getLeft(int i)
+    {
+        return 2 * i;
+    }
+   
+    private int getRight(int i)
+    {
+        return 2 * i + 1;
     }
 
     public double height()
@@ -81,7 +120,7 @@ public class Heap {
         for(int i = 0; i < this.height()-line-1 ;i++)
             System.out.print("-");
 
-        for (int i = 0; i < this.actualSize; i++){
+        for (int i = 1; i < this.actualSize+1; i++){
             System.out.print(this.array[i]+"-");
             current++;
             if (current == breakI) {

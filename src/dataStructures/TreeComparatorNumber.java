@@ -12,4 +12,16 @@ public class TreeComparatorNumber implements Comparator {
         else
             return -1;
     }
+
+    public Object greater(Object arg0, Object arg1) {
+        if (arg0 == null){
+            return arg1;
+        }
+        if (arg1 == null){
+            return arg0;
+        }
+        if ((int) arg0 > (int) arg1)
+            return arg0;
+        return arg1;
+    }
 }
