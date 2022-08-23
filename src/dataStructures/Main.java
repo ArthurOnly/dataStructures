@@ -312,6 +312,20 @@ public class Main {
         pq.print();
     }
 
+    public static void testSkipList()
+    {
+        TreeComparatorKeyValue comparator = new TreeComparatorKeyValue();
+        SkipList list = new SkipList(comparator);
+        System.out.println(list.height());
+        list.insert(1, "Teste");
+        list.insert(48, "Teste");
+        list.insert(37, "Teste");
+        list.insert(22, "Teste");
+        list.insert("zs", "Teste");
+        
+        list.print();
+    }
+
     public static void main(String[] args) {
         // testVectorLinkedList();
         // System.out.println();
@@ -328,7 +342,8 @@ public class Main {
         // testBinaryTree();
         // TestHashTable();
         // testHeap();
-        testPriorityQueue();
+        // testPriorityQueue();
+        testSkipList();
     }
 
 }

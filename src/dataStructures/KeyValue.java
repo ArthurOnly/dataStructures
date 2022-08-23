@@ -10,6 +10,6 @@ public class KeyValue {
     }
 
     public String toString() {
-        return this.key + " " + this.value;
+        return this.key + "/" + this.value;
     }
 }
