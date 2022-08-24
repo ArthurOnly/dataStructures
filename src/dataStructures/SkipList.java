@@ -60,16 +60,20 @@ public class SkipList {
 
     public void print()
     {
+        int floor = this.height();
         QuadNode current = head;
         while (current != null){
             QuadNode initial = current;
+            System.out.println(floor+"----------------------------------------------------------------");
             while (current != null)
             {
-                System.out.print(current+"*****");
+                System.out.print(current+"____");
                 current = current.right;
             }
             System.out.println();
+            System.out.println("----------------------------------------------------------------------");
             current = initial.down;
+            floor--;
         }
     }
 
@@ -77,6 +81,7 @@ public class SkipList {
     {
         KeyValue toInsert = new KeyValue(key, value);
         int randomizeInsertHeight = randomizeHeight();
+        System.out.println(key + " será adicionado em uma altura de " + randomizeInsertHeight + " níveis");
 
         if (randomizeInsertHeight > this.height())
             addNewRow();
@@ -100,10 +105,12 @@ public class SkipList {
 
                         if (reference != null) {
                             newNode.up = reference;
+                            reference.down = newNode;
                         }
                         reference = newNode;
                     }
                     current = current.down;
+                    floor--;
                 }
                 else {
                     QuadNode newNode = new QuadNode(toInsert);
@@ -113,9 +120,36 @@ public class SkipList {
                     current.right = newNode;
                     if (reference != null) {
                         newNode.up = reference;
+                        reference.down = newNode;
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    public void remove(Object key)
+    {
+        KeyValue toRemove = new KeyValue(key, null);
+        QuadNode current = head;
+
+        while (true) {
+            if (comparator.compare(toRemove, current.right.item) == FIRST_IS_GREATER) {
+                current = current.right;
+            } else if (comparator.compare(toRemove, current.right.item) == SECOND_IS_GREATER) {
+                if (current.down != null) {
+                    current = current.down;
+                } else {
+                    break;
+                }
+            } else {
+                current = current.right;
+                while (current != null) {
+                    current.left.right = current.right;
+                    current.right.left = current.left;
+                    current = current.down;
+                }
+                break;
             }
         }
     }

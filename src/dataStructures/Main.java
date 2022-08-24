@@ -324,6 +324,8 @@ public class Main {
         list.insert("zs", "Teste");
         
         list.print();
+        list.remove("zs");
+        list.print();
     }
 
     public static void main(String[] args) {
