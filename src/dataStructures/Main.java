@@ -326,6 +326,14 @@ public class Main {
         list.print();
         list.remove("zs");
         list.print();
+        System.out.println(list.search(48));
+        System.out.println(list.search(23));
+
+        list.remove(1);
+        list.remove(48);
+        list.remove(37);
+        list.remove(22);
+        list.print();
     }
 
     public static void main(String[] args) {

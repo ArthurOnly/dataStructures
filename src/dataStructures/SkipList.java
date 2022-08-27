@@ -5,6 +5,7 @@ import java.util.Comparator;
 public class SkipList {
     private int FIRST_IS_GREATER = 1;
     private int SECOND_IS_GREATER = -1;
+    private int ARE_EQUAL = 0;
 
     private QuadNode head;
     private Comparator comparator;
@@ -126,6 +127,7 @@ public class SkipList {
                 }
             }
         }
+        this.size++;
     }
 
     public void remove(Object key)
@@ -149,8 +151,38 @@ public class SkipList {
                     current.right.left = current.left;
                     current = current.down;
                 }
+                this.reajustLevel();
+                this.size--;
                 break;
             }
+        }
+    }
+
+    public Object search(Object key)
+    {
+        KeyValue toSearch = new KeyValue(key, null);
+        QuadNode current = head;
+        while (true) {
+            if (comparator.compare(toSearch, current.right.item) == FIRST_IS_GREATER) {
+                current = current.right;
+            } else if (comparator.compare(toSearch, current.right.item) == SECOND_IS_GREATER) {
+                if (current.down != null) {
+                    current = current.down;
+                } else {
+                    break;
+                }
+            } else {
+                return current.right.item;
+            }
+        }
+        return null;
+    }
+
+    private void reajustLevel()
+    {
+        if (this.head.down != null && this.comparator.compare(this.head.down.right.item, new KeyValue(Integer.MAX_VALUE, null)) == ARE_EQUAL) {
+            this.head = this.head.down;
+            reajustLevel();
         }
     }
 
